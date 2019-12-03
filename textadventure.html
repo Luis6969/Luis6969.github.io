@@ -4,13 +4,14 @@
 <title>Page Title</title>
 
 <style>
-    #container{
+ #container{
         position: absolute;
-        top: 40px;
+        top: 80px;
         bottom: 0px;
         left: 0px;
         right: 0px;
-        background-color: black;
+        background-color: white;
+        border
     }
 
     #leftpane{
@@ -26,6 +27,7 @@
         width: 44%;
         height: 100%;
         float: left;
+        background-color: black;
     }
 
     #storytext{
@@ -63,10 +65,20 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
     }
 
     #ptext1{
-        color: blue;
+        color: white;
+        font-size: 14px;
     }
     #ptext2{
-        color: green;
+        color: white;
+        font-size: 14px;
+    }
+    #ptext3{
+        color: white;
+        font-size: 14px;
+    }
+    #ptext4{
+        color: white;
+        font-size: 14px;
     }
 
     #storyimg{
@@ -76,7 +88,6 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
     }
 
 </style>
-</head>
 <body>
     <div id='container'>
         <div id='leftpane'>
@@ -85,8 +96,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
 
         <div id='rightpane'>
             <div id='storytext'>
-                <p id='ptext1'>Once upon a time, there was a man named steve and a girl named alex. He was a tall fellow with brown hair. Alex was a short, young girl with orange hair. Both Steve and Alex were  curious about the world they lived in. Steve was a little stronger than Alex  They both grew up together in a village out in a forest. There was food for everyone in the village, they both lived a great life, until, all of a sudden they got transported into a blocky w    look for a civilization or do you try to stay the night right here.
-      </p>
+                <p id='ptext1'></p>
                 <p id='ptext2'></p>
                 <p id='ptext3'></p>
                 <p id='ptext4'></p>
@@ -101,7 +111,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
     </div>
 
 <script>
-    var pic = document.getElementById('storyimg');
+var pic = document.getElementById('storyimg');
     var ptext1 = document.getElementById('ptext1');
     var ptext2 = document.getElementById('ptext2');
     var ptext3 = document.getElementById('ptext3');
@@ -114,13 +124,13 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
     intro();
 
     function intro(){
-        pic.src = "images/Creeper.JPEG";
-        ptext1.innerHTML = "";
+        pic.src = "images/Alex and Steve.PNG";
+        ptext1.innerHTML = "Once upon a time, there was a man named steve and a girl named alex. He was a tall fellow with brown hair. Alex was a short, young girl with orange hair. Both Steve and Alex were  curious about the world they lived in. Steve was a little stronger than Alex  They both grew up together in a village out in a forest. There was food for everyone in the village, they both lived a great life, until, all of a sudden they got transported into a blocky world, all by themselves. You find yourselves in a blocky desert which has no signs of civilization. Do you look for a civilization or do you try to stay the night right here?";
         ptext2.innerHTML = "";
         ptext3.innerHTML = "";
         ptext4.innerHTML = "";
-        b1.innerHTML = "Yes!";
-        b2.innerHTML = "Never!";
+        b1.innerHTML = "Stay The Night";
+        b2.innerHTML = "Look For A Civilization";
         b1.style.display = "block";
         b2.style.display = "block";
         b3.style.display = "none";
@@ -128,36 +138,73 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
         
     }
 
-    function meetWitch(){
-        pic.src = "images/Alex and Steve.PNG";
-        ptext1.innerHTML = "";
+    function stayTheNight1(){
+        pic.src = "images/village.jpg";
+        ptext1.innerHTML = "You went out to stay the night with no shelter, so Steve and Alex died to zombies";
         ptext2.innerHTML = "";
         ptext3.innerHTML = "";
         ptext4.innerHTML = "";
-        b1.innerHTML = "";
+        b1.innerHTML = "Play Again?";
         b2.innerHTML = "";
         b3.innerHTML = "";
         b1.style.display = "block";
-        b2.style.display = "block";
-        b3.style.display = "block";
+        b2.style.display = "none";
+        b3.style.display = "none";
         b4.style.display = "none";
-    
+    }
+        function lookForCivilization(){
+        pic.src = "images/binoculars.jpg";
+        ptext1.innerHTML = "Do you search as far as the eye can see or do you walk a short distance?";
+        ptext2.innerHTML = "";
+        ptext3.innerHTML = "";
+        ptext4.innerHTML = "";
+        b1.innerHTML = "Search As Far As The Eye Can See";
+        b2.innerHTML = "Search A Small Distance";
+        b3.innerHTML = "";
+        b1.style.display = "block";
+        b2.style.display = "block";
+        b3.style.display = "none";
+        b4.style.display = "none"; 
+    }
+        function shortDistance(){
+        pic.src = "images/desert.png.jpg";
+        ptext1.innerHTML = "You find nothing. Do you choose to walk farther?";
+        ptext2.innerHTML = "";
+        ptext3.innerHTML = "";
+        ptext4.innerHTML = "";
+        b1.innerHTML = "Dont Walk Further";
+        b2.innerHTML = "Choose To Walk Further";
+        b3.innerHTML = "";
+        b1.style.display = "block";
+        b2.style.display = "block";
+        b3.style.display = "none";
+        b4.style.display = "none"; 
     }
 
     //state machine
     function bclick(button){
         if(state == "intro"){
-            if (button == 1){
-                meetWitch();
-                state = "meetWitch";
+            if(button == 1){
+                stayTheNight1();
+                state = "stayTheNightDead1"
             }
             else if(button == 2){
-                //Send them somewhere else
+                lookForCivilization();
+                state = "lookForCivilization"
             }
         }
+         else if(state == "stayTheNightDead1")
+            if (button == 1){
+                intro();
+                state = "intro"
+            }
+         else if(state == "lookForCivilization"){
+            if (button == 2){
+                shortDistance();
+                state = "shortDistance"
+            }
+         }
         return false;
     }
 
 </script>
-</body>
-</html>
